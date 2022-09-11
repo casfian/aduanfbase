@@ -1,5 +1,6 @@
 import 'package:aduanfbase/home.dart';
 import 'package:aduanfbase/login.dart';
+import 'package:aduanfbase/testsearch.dart';
 import 'package:aduanfbase/testupload.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Aduan Fbase',
-        home: TestUpload(),
+        home: TestSearch(),
       ),
     );
   }

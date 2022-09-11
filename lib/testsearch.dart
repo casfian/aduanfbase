@@ -8,7 +8,6 @@ class TestSearch extends StatefulWidget {
 }
 
 class _TestSearchState extends State<TestSearch> {
-
   //List of Users from array or Database
   //Source Data
   final List<Map<String, dynamic>> _allUsers = [
@@ -23,6 +22,8 @@ class _TestSearchState extends State<TestSearch> {
     {"id": 9, "name": "Caversky", "age": 80},
     {"id": 10, "name": "Becky", "age": 32},
   ];
+
+  final searchController = TextEditingController();
 
   //this will hold the result Users. Initially will be empty
   //data After search
@@ -70,9 +71,15 @@ class _TestSearchState extends State<TestSearch> {
               height: 20,
             ),
             TextField(
+              controller: searchController,
               onChanged: (value) => _runFilter(value),
-              decoration: const InputDecoration(
-                  labelText: 'Search', suffixIcon: Icon(Icons.search)),
+              decoration: InputDecoration(
+                labelText: 'Search',
+                suffixIcon: IconButton(
+                  onPressed: searchController.clear,
+                  icon: const Icon(Icons.clear),
+                ),
+              ),
             ),
             const SizedBox(
               height: 20,
@@ -84,6 +91,10 @@ class _TestSearchState extends State<TestSearch> {
                       itemBuilder: (context, index) => ListTile(
                         key: ValueKey(_foundUsers[index]["id"]),
                         title: Text(_foundUsers[index]['name']),
+                        onTap: () {
+                          //click on the name to select
+                          debugPrint('Selected ${_foundUsers[index]['name']}');
+                        },
                       ),
                     )
                   : const Text(
